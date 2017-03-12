@@ -73,21 +73,45 @@ int main() { // 스택을 이용한 후위 연산.
 	float y;
 	float result;
 
-	while ((c = cin.get()) != '\n')
+	while ((c = cin.get()) != '\n') // c 가 엔터가 아니라면 계속, 엔터면 중단.
 	{
 		x = 0; // 연산 값 임시저장.
 
 		while (c == ' ') cin.get(c);
+		// 공백 문자라면 공백이 아닐 때까지 다음걸 읽어들여 c에 저장
 		
-		if (c == '+') x = acc.pop() + acc.pop();
-		if (c == '*') x = acc.pop() * acc.pop();
+		if (c == '+')
+		{
+			x = acc.pop() + acc.pop();
+		}
+		if (c == '*')
+		{
+			x = acc.pop() * acc.pop();
+		}
 		
 		if (c == '-')
 		{
+			cin.get(c);
+
+			if (c >= '0' && c <= '9') // 음수인 경우.
+			{
+				acc.push(-(c - '0'));
+				continue;
+			}
+			else if (c == '\n') // 마지막에 연산기호 - 가 붙은 경우.
+			{
 				y = acc.pop();
 				x = acc.pop() - y;
+				acc.push(x);
+				break;
+			}
+			else // 그 외 연산기호로 중간에 쓰였을 경우
+			{
+				y = acc.pop();
+				x = acc.pop() - y;
+			}
 		}
-		
+
 		if (c == '/')
 		{
 			y = acc.pop();
@@ -96,15 +120,18 @@ int main() { // 스택을 이용한 후위 연산.
 		
 		while (c >= '0' && c <= '9')
 		{
-			x = 10 * x + (c - '0');  cin.get(c);
+			x = 10 * x + (c - '0'); cin.get(c);
 		}
 		acc.push(x);
 	}
+	
 	result = acc.pop();
 
-	if(result - (int)result > 0)
+	if(result - (int)result > 0) // 양수 소수인 경우
 		printf("값 : %.2lf \n", result);
-	else
+	else if(result - (int)result < 0) // 음수 소수인 경우
+		printf("값 : %.2lf \n", result);
+	else // 정수인 경우 (0)
 		printf("값 : %d \n", (int)result);
 }
 
@@ -113,3 +140,10 @@ int main() { // 스택을 이용한 후위 연산.
 // (주의, 연산된 결과 값에 소수점 이하 값이 있을 경우 소수점 둘째 자리까지 출력한다.)
 //  %.2lf 를 쓰면 둘째 자리까지 출력.
 // 소수점 이하값이 없을 경우는 그냥 정수로 출력해야 하는건가..?
+
+/*
+else if (c == '\n')
+{
+break;
+}
+*/
