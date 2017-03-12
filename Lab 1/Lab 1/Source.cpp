@@ -25,7 +25,12 @@ int main()
 
 		for (int x = 0; x < N_.length(); x++) { // 문자열들 전체 분석
 			temp = N_.at(x);
-			if (!isdigit(temp)) { // 하나라도 숫자가 아니라면
+			if (temp < 0) // 한글인 경우 음수로 저장되기 때문에 미리 거름. 
+			{
+				cout << "응 숫자아니야~" << endl;
+				return 0;
+			}
+			else if (!isdigit(temp)) { // 하나라도 숫자가 아니라면
 
 				cout << N_;
 				cout << "는 숫자가 아닙니다. 프로그램 종료! " << endl;
