@@ -71,6 +71,7 @@ int main() { // 스택을 이용한 후위 연산.
 	Stack2 acc;
 	float x;
 	float y;
+	float result;
 
 	while ((c = cin.get()) != '\n')
 	{
@@ -99,10 +100,16 @@ int main() { // 스택을 이용한 후위 연산.
 		}
 		acc.push(x);
 	}
-	printf("값 : %.2lf \n", acc.pop());
+	result = acc.pop();
+
+	if(result - (int)result > 0)
+		printf("값 : %.2lf \n", result);
+	else
+		printf("값 : %d \n", (int)result);
 }
 
-// 입력 데이터: 20  15  *  20  4  /  +  8  *  5  - 
+// 입력 데이터: 20 15 * 20 4 / + 8 * 5 - 
 // 결과값 = 2435
 // (주의, 연산된 결과 값에 소수점 이하 값이 있을 경우 소수점 둘째 자리까지 출력한다.)
 //  %.2lf 를 쓰면 둘째 자리까지 출력.
+// 소수점 이하값이 없을 경우는 그냥 정수로 출력해야 하는건가..?
