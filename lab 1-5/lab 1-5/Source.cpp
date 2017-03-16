@@ -95,9 +95,14 @@ int main() { // 스택을 이용한 후위 연산.
 
 			if (c >= '0' && c <= '9') // 음수인 경우.
 			{
-				acc.push(-(c - '0'));
+				while (c >= '0' && c <= '9') {
+					//acc.push(-(c - '0'));
+					x = 10 * x + (c - '0'); cin.get(c);
+				}
+				acc.push(-(x));
 				continue;
 			}
+			
 			else if (c == '\n') // 마지막에 연산기호 - 가 붙은 경우.
 			{
 				y = acc.pop();
