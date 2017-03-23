@@ -21,7 +21,7 @@ int main()
 	random_device rd;
 	mt19937 gen_1(rd());
 
-	uniform_int_distribution<__int64> dist1(0, 20);
+	uniform_int_distribution<__int64> dist1(0, 100);
 
 	for (int i = 0; i < N; i++) {
 
