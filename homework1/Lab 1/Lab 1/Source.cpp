@@ -30,19 +30,18 @@ int main()
 				cout << "응 숫자아니야~" << endl;
 				return 0;
 			}
-			else if (!isdigit(temp)) { // 하나라도 숫자가 아니라면
+			else if (!isdigit(temp) && x == 0) { // 하나라도 숫자가 아니고 그게 처음이면
 
 				cout << N_;
 				cout << "는 숫자가 아닙니다. 프로그램 종료! " << endl;
 
 				return 0; // 숫자가 아닐 시 프로그램 종료
 			}
-			else if (isdigit(temp) && (x == N_.length() - 1)) {
+			else if (isdigit(temp)) {
 
 				// 모든 문자가 1이고 문자열의 끝이라면,
 
-				cout << N_;
-				cout << "는 숫자입니다. 이 숫자 이하의 소수를 출력합니다 " << endl;
+				cout << " 이 숫자 이하의 소수를 출력합니다 " << endl;
 
 				N = stoi(N_); // 스트링을 숫자로 바꾼다.
 
@@ -67,6 +66,8 @@ int main()
 				}
 						
 				cout << '\n';
+
+				break;
 			}
 			else
 				continue;
