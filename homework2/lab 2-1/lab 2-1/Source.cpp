@@ -21,7 +21,7 @@ int main()
 	random_device rd;
 	mt19937 gen_1(rd());
 
-	uniform_int_distribution<__int64> dist1(0, 100);
+	uniform_int_distribution<__int64> dist1(0, 100); // 0~100까지의 랜덤한 숫자 생성
 
 	for (int i = 0; i < N; i++) {
 
@@ -38,7 +38,7 @@ int main()
 		}
 	}
 	
-	for (int j = 0; j < M; j++) {
+	for (int j = 0; j < M; j++) { // B에 대해서도 같은 것을 반복.
 		
 		temp = dist1(gen_1);
 		itr = find(M_.begin(), M_.end(), temp);
@@ -52,7 +52,7 @@ int main()
 	}
 
 	sort(N_.begin(), N_.end());
-	sort(M_.begin(), M_.end());
+	sort(M_.begin(), M_.end()); // 두 집합을 정렬한다. 정렬하지 않으면 집합 함수들 사용 불가능.
 
 	cout << "집합 A - ";
 	for (itr = N_.begin(); itr != N_.end(); itr++) {
@@ -64,12 +64,12 @@ int main()
 	cout << "집합 B - ";
 	for (itr = M_.begin(); itr != M_.end(); itr++) {
 		cout <<  *itr << " ";
-	}
+	} // 집합들을 출력한다.
 
 	cout << "\n";
 
 	itr = set_union(N_.begin(), N_.end(), M_.begin(), M_.end(), result1.begin());
-	result1.resize(itr - result1.begin());
+	result1.resize(itr - result1.begin()); // 합집합을 생성하는 함수
 
 	cout << "합집합 - ";
 
@@ -80,7 +80,7 @@ int main()
 	cout << "\n";
 
 	itr = set_intersection(N_.begin(), N_.end(), M_.begin(), M_.end(), result2.begin());
-	result2.resize(itr - result2.begin());
+	result2.resize(itr - result2.begin()); // 교집합을 생성하는 함수
 
 	cout << "교집합 - ";
 
