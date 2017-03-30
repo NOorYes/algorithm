@@ -5,8 +5,7 @@
 using namespace std;
 void traverse(struct treeNode *t);
 void visit(struct treeNode *t);
-int getHeight(struct treeNode *t); // 레벨을 구하는 함수
-void serach(treeNode * t, const char& key);
+void serach(treeNode * t, int level_,const char& key);
 
 struct treeNode // 트리 노드 
 {
@@ -77,6 +76,7 @@ int Queue::empty() { return head == tail; }
 itemType A;
 bool flag = false;
 int height_ = 0;
+int level = 0;
 
 int main()
 {
@@ -109,7 +109,7 @@ int main()
 	
 	A = stack.pop(); // 제일 마지막에 들어온 것.
 
-	serach(A, temp); // 탐색
+	serach(A, 1, temp); // 탐색
 	
 	if (!flag) // 탐색 실패
 	{
@@ -117,8 +117,7 @@ int main()
 	} 
 	else
 	{
-		getHeight(A);
-		cout << (height_ + 1) << endl;
+		cout << level << endl;
 	}
 
 	cout << endl;
@@ -145,31 +144,22 @@ void visit(struct treeNode *t)
 	cout << t->info << " ";
 }
 
-int getHeight(struct treeNode *t)
-{	
-	int height = 0;
-
-	if (t != NULL)
-	{
-		height = 1 + max(getHeight(t->l), getHeight(t->r));
-		height_ += height;
-	}
-	return height;
-}
-
-void serach(treeNode * t, const char& key)
+void serach(treeNode * t, int level_, const char& key)
 {
 	if (t == NULL) { return; }
-
+	else {
+		level_++;
 		if (key == t->info) {
 			A = t;
+			level = level_ - 1;
 			flag = true;
 			return;
 		}
 		else { // 재귀적 탐색
-			serach(t->l, key);
-			serach(t->r, key); 
+			serach(t->l, level_, key);
+			serach(t->r, level_, key);
 		}
+	}
 }
 
 

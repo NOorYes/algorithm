@@ -90,15 +90,15 @@ void insertion(itemType a[], int n)
 	{
 		v = a[i]; 
 		j = i;
-		DataMove_Cnt++;
 		while (a[j - 1] > v) 
 		{ 
-			DataMove_Cnt++;
+			
 			Compare_Cnt++;
 			a[j] = a[j - 1];
+			DataMove_Cnt++;
 			j--;
-			
 		}
 		a[j] = v;
+		DataMove_Cnt++;
 	}
 }
