@@ -53,8 +53,8 @@ int main()
 	DataMove_Cnt_B = DataMove_Cnt;
 
 	cout << "SortedData_A: ";
-	/*
-	for (int x = 0; x < N; x++)
+	//*
+	for (int x = 0; x < 30; x++)
 	{
 	printf("%d ",N_vectorA[x]);
 	}
@@ -63,8 +63,8 @@ int main()
 	cout << "\n";
 
 	cout << "SortedData_B: ";
-	/*
-	for (int y = 0; y < N; y++) {
+	//*
+	for (int y = 0; y < 30; y++) {
 	cout << N_vectorB[y] << " ";
 	}
 	//*/

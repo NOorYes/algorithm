@@ -91,7 +91,7 @@ void shellSort(itemType a[], int n)
 			{
 				a[j] = a[j - h];
 				j -= h;
-				result_S += a[i] + a[i] + a[i - h];
+				result_S += a[i] + a[i] + a[i - h]; // 합 계산
 				if (j <= h - 1)
 				{
 					break;
@@ -116,7 +116,7 @@ void insertion(itemType a[], int n)
 		{
 			a[j] = a[j - 1];
 			j--;
-			result_I += (v + v);
+			result_I += (v + v); // 합 계산
 		}
 		a[j] = v;
 	}

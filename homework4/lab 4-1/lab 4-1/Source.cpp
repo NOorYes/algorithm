@@ -4,7 +4,8 @@
 #include <time.h>
 
 typedef int itemType;
-void insertion(itemType a[], int n);
+inline void swap(itemType a[], int i, int j);
+void quicksort(itemType a[], int l, int r);
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int DataMove_Cnt;
 int main()
 {
 	int N = 0; // 정렬하려는 배열의 크기
-	
+
 	int Compare_Cnt_A = 0;
 	int Compare_Cnt_B = 0;
 
@@ -25,7 +26,7 @@ int main()
 
 	int* N_vectorA = new int[N];
 	int* N_vectorB = new int[N];
-	
+
 	for (int i = 0; i < N; i++)
 	{
 		N_vectorA[i] = i + 1;
@@ -38,7 +39,7 @@ int main()
 
 	reverse(N_vectorA, N_vectorA + N); // A를 내림차순으로 바꾼다.
 
-	insertion(N_vectorA, N); // A 삽입 정렬
+	quicksort(N_vectorA, 0, N-1); // A 삽입 정렬
 
 	Compare_Cnt_A = Compare_Cnt;
 	DataMove_Cnt_A = DataMove_Cnt;
@@ -46,16 +47,16 @@ int main()
 	DataMove_Cnt = 0;
 	Compare_Cnt = 0;
 
-	insertion(N_vectorB, N); // B 삽입 정렬
+	quicksort(N_vectorB, 0, N-1); // B 삽입 정렬
 
 	Compare_Cnt_B = Compare_Cnt;
 	DataMove_Cnt_B = DataMove_Cnt;
 
-	cout <<"SortedData_A: ";
+	cout << "SortedData_A: ";
 	//*
-	for (int x = 0; x < 30; x++) 
+	for (int x = 0; x < 30; x++)
 	{
-		printf("%d ",N_vectorA[x]);
+		printf("%d ", N_vectorA[x]);
 	}
 	//*/
 
@@ -74,31 +75,58 @@ int main()
 	cout << ", DataMove_Cnt_A : " << DataMove_Cnt_A << endl;;
 
 	cout << "Compare_Cnt_B : " << Compare_Cnt_B;
-	cout << ", DataMove_Cnt_B : "<< DataMove_Cnt_B << endl;
+	cout << ", DataMove_Cnt_B : " << DataMove_Cnt_B << endl;
 
 	cout << "\n";
 
 	return 0;
 }
 
-void insertion(itemType a[], int n)
+inline void swap(itemType a[], int i, int j)
 {
-	int i, j; 
-	itemType v;
-	
-	for (i = 1; i < n; i++)
-	{
-		v = a[i]; 
-		j = i;
-		while (a[j - 1] > v) 
-		{ 
-			
+	itemType  t = a[i]; // left
+	a[i] = a[j]; // right
+	a[j] = t;
+	DataMove_Cnt++;
+	DataMove_Cnt++;
+}
+
+int partition(itemType a[], int l, int r) {
+
+	itemType v = a[l];
+	int	i = l;
+	int j = r + 1;
+
+	if (r >= l) {
+		
+		for (;;)
+		{
+			while (a[++i] < v)
+			{Compare_Cnt++;
 			Compare_Cnt++;
-			a[j] = a[j - 1];
+			}
+			while (a[--j] > v);
+			{Compare_Cnt++;}
+			if (i >= j) { break; }
+			swap(a, i, j);
 			DataMove_Cnt++;
-			j--;
 		}
-		a[j] = v;
+		swap(a, j, l);
 		DataMove_Cnt++;
 	}
+	return j;
 }
+
+
+void quicksort(itemType a[], int l, int r) 
+{
+	int  j;
+	if (r >= l) 
+	{	
+		j = partition(a, l, r);
+		quicksort(a, l, j - 1);
+		quicksort(a, j + 1, r);
+	}
+}
+
+

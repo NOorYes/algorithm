@@ -52,8 +52,8 @@ int main()
 	DataMove_Cnt_B = DataMove_Cnt;
 
 	cout << "SortedData_A: ";
-	/*
-	for (int x = 0; x < N; x++)
+	//*
+	for (int x = 0; x < 30; x++)
 	{
 	printf("%d ",N_vectorA[x]);
 	}
@@ -62,8 +62,8 @@ int main()
 	cout << "\n";
 
 	cout << "SortedData_B: ";
-	/*
-	for (int y = 0; y < N; y++) {
+	//*
+	for (int y = 0; y < 30; y++) {
 	cout << N_vectorB[y] << " ";
 	}
 	//*/
@@ -92,7 +92,7 @@ void shellSort(itemType a[], int n)
 	Compare_Cnt++;
 	do {
 		h = h / 3;
-		for (i = h; i <= n; i++)
+		for (i = h; i < n; i++)
 		{
 			Compare_Cnt++;
 			v = a[i]; 
@@ -104,7 +104,7 @@ void shellSort(itemType a[], int n)
 				a[j] = a[j - h]; 
 				DataMove_Cnt++;
 				j -= h;  
-				if (j <= h - 1) {break;}
+				if (j < h - 1) {break;}
 			}
 			a[j] = v;
 			DataMove_Cnt++;
