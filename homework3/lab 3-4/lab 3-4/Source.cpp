@@ -116,7 +116,7 @@ void insertion(itemType a[], int n)
 		{
 			a[j] = a[j - 1];
 			j--;
-			result_I += (v + v); // 합 계산
+			result_I += (v + v +a[i-1]); // 합 계산
 		}
 		a[j] = v;
 	}
