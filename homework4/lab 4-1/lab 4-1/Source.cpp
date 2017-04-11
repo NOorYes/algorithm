@@ -25,7 +25,7 @@ int main()
 	cin >> N;
 
 	int* N_vectorA = new int[N];
-	int* N_vectorB = new int[N];
+	int* N_vectorB = new int[N]; // 배열 동적 할당
 
 	for (int i = 0; i < N; i++)
 	{
@@ -82,7 +82,7 @@ int main()
 	return 0;
 }
 
-inline void swap(itemType a[], int i, int j)
+inline void swap(itemType a[], int i, int j) // 위치를 바꾸는 함수
 {
 	itemType  t = a[i]; // left
 	a[i] = a[j]; // right
@@ -118,7 +118,7 @@ int partition(itemType a[], int l, int r) {
 }
 
 
-void quicksort(itemType a[], int l, int r) 
+void quicksort(itemType a[], int l, int r) //퀵 소트
 {
 	int  j;
 	if (r >= l) 
